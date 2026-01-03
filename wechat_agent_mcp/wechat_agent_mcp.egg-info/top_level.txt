@@ -1,5 +1,0 @@
-core
-lib
-models
-skills
-utils
