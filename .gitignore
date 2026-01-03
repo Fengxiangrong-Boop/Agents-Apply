@@ -21,18 +21,16 @@ wheels/
 .installed.cfg
 *.egg
 
-# Environment variables
-.env
-.env.*
-
 # Virtual Environment
 venv/
 .venv/
 ENV/
 
 # IDE
-.idea/
 .vscode/
+.idea/
 
-# Antigravity/Gemini
-.gemini/
+# Project Specific
+.env
+*.log
+wechat_agent_mcps.txt
