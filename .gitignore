@@ -1,0 +1,105 @@
+# ===========================
+# Python
+# ===========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+
+# ===========================
+# Node.js
+# ===========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dist/
+dist-ssr/
+.vite/
+.cache/
+
+# ===========================
+# 环境变量和配置
+# ===========================
+.env
+.env.local
+.env.*.local
+
+# ===========================
+# 日志文件
+# ===========================
+*.log
+logs/
+backend/logs/*.log
+!backend/logs/.gitkeep
+
+# ===========================
+# 数据库
+# ===========================
+*.db
+*.sqlite
+*.sqlite3
+postgres_data/
+
+# ===========================
+# IDE
+# ===========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ===========================
+# Docker
+# ===========================
+docker-compose.override.yml
+
+# ===========================
+# 临时文件
+# ===========================
+*.tmp
+*.bak
+*.backup
+.temp/
+frontend_new/
+
+# ===========================
+# 用户上传和生成的文件
+# ===========================
+uploads/
+media/
+static/collected/
+
+# ===========================
+# 测试覆盖率
+# ===========================
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
