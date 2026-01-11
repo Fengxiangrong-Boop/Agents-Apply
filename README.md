@@ -95,8 +95,10 @@ docker-compose up -d
 #### 后端
 ```bash
 cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+# 使用 Poetry 安装依赖
+poetry install
+# 启动开发服务器
+poetry run uvicorn app.main:app --reload
 ```
 
 #### 前端
@@ -114,14 +116,17 @@ npm run dev
 │   │   ├── api/      # API路由
 │   │   ├── core/     # 核心配置
 │   │   ├── models/   # 数据模型
-│   │   └── services/ # 业务逻辑
-│   └── requirements.txt
+│   │   ├── schemas/  # Pydantic模型
+│   │   ├── services/ # 业务逻辑
+│   │   └── utils/    # 通用工具
+│   └── pyproject.toml # Poetry依赖配置
 ├── frontend/          # Vue 3前端
 │   ├── src/
 │   │   ├── api/      # API调用
 │   │   ├── components/ # 组件
 │   │   ├── views/    # 页面
-│   │   └── stores/   # 状态管理
+│   │   ├── stores/   # 状态管理
+│   │   └── assets/   # 静态资源
 │   └── package.json
 └── docker-compose.yml
 ```
