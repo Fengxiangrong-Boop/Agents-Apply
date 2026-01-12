@@ -52,7 +52,7 @@ class Settings(BaseSettings):
     RATE_LIMIT_AUTH: str = "10/minute"  # 认证接口限流
     
     # CORS配置
-    CORS_ORIGINS: list[str] = ["http://localhost:5173"]
+    CORS_ORIGINS: list[str] = ["http://localhost:5173", "http://localhost:27999"]
     
     # 日志配置
     LOG_LEVEL: str = "INFO"

@@ -168,10 +168,12 @@ const handleRegister = () => {
         if (error.response?.data?.detail) {
           const detail = error.response.data.detail
           if (Array.isArray(detail)) {
-            errorMsg = detail.join(', ')
+            errorMsg = detail.map((err: any) => err.msg || JSON.stringify(err)).join('; ')
           } else {
             errorMsg = detail
           }
+        } else {
+          errorMsg = error.message || '注册失败'
         }
         message.error(errorMsg)
       } finally {

@@ -47,6 +47,7 @@ async def register(
     password_hash = get_password_hash(user_data.password)
     new_user = User(
         username=user_data.username,
+        email=user_data.email,
         password_hash=password_hash,
         is_active=True,
         created_at=datetime.utcnow(),

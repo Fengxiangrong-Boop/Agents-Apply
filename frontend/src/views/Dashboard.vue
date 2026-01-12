@@ -131,8 +131,10 @@ const fetchArticles = async () => {
   }
 }
 
-const viewArticle = (_id?: number) => {
-  router.push({ name: 'Articles' })
+const viewArticle = (id?: number) => {
+  if (id) {
+    router.push({ name: 'Articles', query: { id: id.toString() } })
+  }
 }
 
 onMounted(() => {
