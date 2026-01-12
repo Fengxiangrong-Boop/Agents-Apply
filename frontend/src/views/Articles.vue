@@ -74,15 +74,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { useMessage, NCard, NInput, NButton, NIcon } from 'naive-ui'
 import { Palette, Sparkles, Send } from 'lucide-vue-next'
-import { articleApi } from '@/api/article'
+import { articleApi, type Style } from '@/api/article'
 import { styleApi } from '@/api/style'
 
 const message = useMessage()
+const route = useRoute()
 const theme = ref('')
-const styles = ref([])
+const styles = ref<Style[]>([])
 const selectedStyleId = ref<number | null>(null)
 const generating = ref(false)
 const syncing = ref(false)
@@ -91,11 +93,22 @@ const currentArticle = ref<any>(null)
 const fetchStyles = async () => {
   try {
     styles.value = await styleApi.getStyles()
-    if (styles.value.length > 0) {
-      selectedStyleId.value = styles.value[0].id
+    if (styles.value.length > 0 && !selectedStyleId.value) {
+      selectedStyleId.value = styles.value[0]?.id || null
     }
   } catch (error) {
     message.error('获取样式失败')
+  }
+}
+
+const fetchArticle = async (id: number) => {
+  try {
+    const article = await articleApi.getArticle(id)
+    currentArticle.value = article
+    theme.value = article.prompt_input
+    // If we have style info in article (currently not in interface but good to handle if added), set it here
+  } catch (error) {
+    message.error('获取文章详情失败')
   }
 }
 
@@ -104,8 +117,8 @@ const handleGenerate = async () => {
 
   generating.value = true
   try {
-    const article = await articleApi.generateArticle({
-      topic: theme.value,
+    const article = await articleApi.createArticle({
+      prompt_input: theme.value,
       style_id: selectedStyleId.value
     })
     currentArticle.value = article
@@ -135,6 +148,20 @@ const handleSync = async () => {
 
 onMounted(() => {
   fetchStyles()
+  const id = route.query.id
+  if (id) {
+    fetchArticle(Number(id))
+  }
+})
+
+// Listen to route changes (in case of navigation within same component)
+watch(() => route.query.id, (newId) => {
+  if (newId) {
+    fetchArticle(Number(newId))
+  } else {
+    currentArticle.value = null
+    theme.value = ''
+  }
 })
 </script>
 

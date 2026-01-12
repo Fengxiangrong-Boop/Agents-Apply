@@ -8,6 +8,7 @@ from pydantic import BaseModel, Field
 class UserBase(BaseModel):
     """用户基础模型"""
     username: str = Field(..., min_length=3, max_length=50, description="用户名")
+    email: Optional[str] = Field(None, max_length=100, description="邮箱")
 
 
 class UserCreate(UserBase):
@@ -24,6 +25,7 @@ class UserLogin(BaseModel):
 class UserResponse(UserBase):
     """用户响应模型"""
     id: int
+    email: Optional[str]
     is_active: bool
     created_at: datetime
     

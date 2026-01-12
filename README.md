@@ -64,11 +64,12 @@ docker-compose up -d
 - `SECRET_KEY`: JWT密钥（使用 `openssl rand -hex 32` 生成）
 - `DATABASE_URL`: PostgreSQL连接字符串
 - `REDIS_URL`: Redis连接字符串
+- `ENCRYPTION_KEY`: 数据加密密钥
 
 可选配置：
-- `SILICONFLOW_API_KEY`: AI文章生成API密钥
-- `WECHAT_APPID`: 微信公众号AppID
-- `WECHAT_APPSECRET`: 微信公众号AppSecret
+- `SILICONFLOW_API_KEY`: 推荐在Web界面"设置"中配置
+- `WECHAT_APPID`: 推荐在Web界面"设置"中配置
+- `WECHAT_APPSECRET`: 推荐在Web界面"设置"中配置
 
 详细配置说明请查看 [部署文档](./DEPLOYMENT.md)
 
@@ -80,7 +81,8 @@ docker-compose up -d
 4. **创建文章**：
    - 进入"文章创作"页面
    - 输入文章主题
-   - 选择文章样式
+   - 选择"视觉主题"（支持简约白、商务蓝、极客黑等预设）
+   - 或者选择自定义"样式"模板
    - 点击"生成文章"
 5. **同步微信**：生成后点击"同步到微信"即可推送到草稿箱
 

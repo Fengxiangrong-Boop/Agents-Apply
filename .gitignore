@@ -103,3 +103,4 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
+frontend/venv_node/

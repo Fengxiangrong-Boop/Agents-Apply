@@ -121,7 +121,17 @@ const handleLogin = () => {
         message.success('登录成功')
         router.push({ name: 'Dashboard' })
       } catch (error: any) {
-        const errorMsg = error.response?.data?.detail || error.message || '登录失败'
+        let errorMsg = '登录失败'
+        if (error.response?.data?.detail) {
+          const detail = error.response.data.detail
+          if (Array.isArray(detail)) {
+            errorMsg = detail.map((err: any) => err.msg || JSON.stringify(err)).join('; ')
+          } else {
+            errorMsg = detail
+          }
+        } else {
+          errorMsg = error.message || '登录失败'
+        }
         message.error(errorMsg)
       } finally {
         loading.value = false

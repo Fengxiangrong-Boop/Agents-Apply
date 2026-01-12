@@ -8,6 +8,7 @@ from sqlmodel import select
 from app.core.db import async_session_maker
 from app.core.logging import logger
 from app.models.style import Style
+import app.models  # 导入所有模型以注册到 SQLModel.metadata
 
 # 系统预设样式数据
 SYSTEM_STYLES = [
